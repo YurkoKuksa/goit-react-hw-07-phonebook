@@ -8,7 +8,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContactsThunk, fetchNameThunk } from 'store/operations';
 import { selectContacts, selectFilter } from 'store/selectors';
-import { addContacts, removeContacts } from 'store/contactsSlice';
+// import { addContacts, removeContacts } from 'store/contactsSlice';
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
