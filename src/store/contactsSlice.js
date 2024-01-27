@@ -1,4 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import {
+  addContactsThunk,
+  fetchDeleteThunk,
+  fetchNameThunk,
+} from './operations';
 
 const initialState = {
   contacts: [],
@@ -21,6 +26,39 @@ const contactsSlice = createSlice({
         element => element.id !== action.payload
       );
     },
+  },
+
+  extraReducers: builder => {
+    builder
+      .addCase(fetchNameThunk.fulfilled, (state, action) => {
+        state.contacts = action.payload;
+      })
+      .addCase(addContactsThunk.fulfilled, (state, action) => {
+        state.contacts = state.contacts.concat(action.payload);
+      })
+      .addCase(fetchDeleteThunk.fulfilled, (state, action) => {
+        state.contacts = state.contacts.filter(
+          contact => contact.id !== action.payload
+        );
+      })
+      .addMatcher(
+        isAnyOf(addContactsThunk.rejected, fetchNameThunk.rejected),
+        (state, action) => {
+          state.error = action.payload;
+        }
+      )
+      .addMatcher(
+        isAnyOf(addContactsThunk.pending, fetchNameThunk.pending),
+        (state, action) => {
+          state.loading = true;
+        }
+      )
+      .addMatcher(
+        isAnyOf(addContactsThunk.fulfilled, fetchNameThunk.fulfilled),
+        (state, action) => {
+          state.loading = false;
+        }
+      );
   },
 });
 

@@ -7,17 +7,18 @@ import {
 } from './ContactsList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeContacts } from 'store/contactsSlice';
-import { getContacts } from 'store/operations';
+import { fetchNameThunk } from 'store/operations';
+import { selectContacts, selectFilter } from 'store/selectors';
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getContacts());
+    dispatch(fetchNameThunk());
   }, [dispatch]);
 
-  const contacts = useSelector(state => state.contacts.contacts);
-  const filter = useSelector(state => state.filter.filter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
 
   const getFilterData = () => {
     return contacts.filter(

@@ -18,7 +18,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <App />
-
       <ToastContainer autoClose={1000} />
       <GlobalStyle />
     </ThemeProvider>
