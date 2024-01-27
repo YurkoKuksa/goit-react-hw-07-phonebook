@@ -22,3 +22,12 @@ export const HeaderTwo = styled.h2`
     color: #5b5885;
   }
 `;
+export const Error = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-weight: 700;
+
+  margin-top: 30px;
+`;
