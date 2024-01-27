@@ -1,11 +1,14 @@
 import { nanoid } from 'nanoid';
 import React, { useState } from 'react';
 import { ButtonSbm, FormContainer, InputStyle, LabelCont } from './Form.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContacts } from 'store/contactsSlice';
+import { selectContacts } from 'store/selectors';
 
 export const Form = () => {
   const dispatch = useDispatch();
+
+  const contacts = useSelector(selectContacts);
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -18,10 +21,19 @@ export const Form = () => {
       number,
     };
 
-    dispatch(addContacts(newObject));
+    const isNameExists = contacts.some(
+      contact => contact.name.toLowerCase() === newObject.name.toLowerCase()
+    );
 
-    setName('');
-    setNumber('');
+    if (!isNameExists) {
+      dispatch(addContacts(newObject));
+      setName('');
+      setNumber('');
+    } else {
+      alert(
+        `Contact with the name "${newObject.name}" already exists. Please choose a different name.`
+      );
+    }
   };
 
   const handleChange = e => {

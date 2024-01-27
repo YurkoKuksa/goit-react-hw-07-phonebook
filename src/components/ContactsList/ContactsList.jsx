@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ButtonSbm,
   List,
@@ -7,9 +7,14 @@ import {
 } from './ContactsList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeContacts } from 'store/contactsSlice';
+import { getContacts } from 'store/operations';
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getContacts());
+  }, [dispatch]);
 
   const contacts = useSelector(state => state.contacts.contacts);
   const filter = useSelector(state => state.filter.filter);
