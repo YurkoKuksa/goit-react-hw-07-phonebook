@@ -4,19 +4,17 @@ import { Form } from './Form/Form';
 import { ContactsList } from './ContactsList/ContactsList';
 import { Filter } from './Filter/Filter';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch /* useSelector */ } from 'react-redux';
 import { fetchNameThunk } from 'store/operations';
+// import { selectError, selectIsLoading } from 'store/selectors';
 
 export const App = () => {
   const dispatch = useDispatch();
 
   // Отримуємо частини стану
-  // const { items, isLoading, error } = useSelector(getTasks);
 
-  // Викликаємо операцію
-  // useEffect(() => {
-  //   dispatch(fetchTasks());
-  // }, [dispatch]);
+  // const loading = useSelector(selectIsLoading);
+  // const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchNameThunk());

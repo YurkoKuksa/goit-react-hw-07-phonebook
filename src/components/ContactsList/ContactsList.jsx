@@ -6,9 +6,9 @@ import {
   Paragraph,
 } from './ContactsList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeContacts } from 'store/contactsSlice';
-import { fetchNameThunk } from 'store/operations';
+import { deleteContactsThunk, fetchNameThunk } from 'store/operations';
 import { selectContacts, selectFilter } from 'store/selectors';
+import { addContacts, removeContacts } from 'store/contactsSlice';
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
@@ -36,7 +36,10 @@ export const ContactsList = () => {
         <List key={id}>
           <Paragraph>{name}:&nbsp; </Paragraph>
           <ParaghNumber> {number} &nbsp;</ParaghNumber>
-          <ButtonSbm onClick={() => dispatch(removeContacts(id))} type="button">
+          <ButtonSbm
+            onClick={() => dispatch(deleteContactsThunk(id))}
+            type="button"
+          >
             Delete
           </ButtonSbm>
         </List>
