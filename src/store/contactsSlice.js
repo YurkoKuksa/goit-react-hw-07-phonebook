@@ -38,7 +38,7 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContactsThunk.fulfilled, (state, action) => {
         state.contacts = state.contacts.filter(
-          contact => contact.id !== action.payload
+          contact => contact.id !== action.payload.id
         );
       })
       .addMatcher(
