@@ -1,5 +1,4 @@
 import { Error, HeaderTwo, MainContainer } from './App.styled';
-
 import { Form } from './Form/Form';
 import { ContactsList } from './ContactsList/ContactsList';
 import { Filter } from './Filter/Filter';

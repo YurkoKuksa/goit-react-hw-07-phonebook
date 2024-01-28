@@ -31,7 +31,7 @@ export const Form = () => {
       setNumber('');
     } else {
       alert(
-        `Contact with the name "${newObject.name}" already exists. Please choose a different name.`
+        `The contact with the name "${newObject.name}" already exists. Please choose a different name.`
       );
     }
   };

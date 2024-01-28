@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { Loader } from 'components/Loader/Loader';
 import {
   ButtonSbm,
   List,
@@ -6,19 +6,15 @@ import {
   Paragraph,
 } from './ContactsList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContactsThunk, fetchNameThunk } from 'store/operations';
-import { selectContacts, selectFilter } from 'store/selectors';
-// import { addContacts, removeContacts } from 'store/contactsSlice';
+import { deleteContactsThunk } from 'store/operations';
+import { selectContacts, selectFilter, selectIsLoading } from 'store/selectors';
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchNameThunk());
-  }, [dispatch]);
-
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
+  const loading = useSelector(selectIsLoading);
 
   const getFilterData = () => {
     return contacts.filter(
@@ -30,15 +26,23 @@ export const ContactsList = () => {
 
   const filteredContacts = getFilterData();
 
+  const handleDelete = async id => {
+    dispatch(deleteContactsThunk(id));
+  };
+
   return (
     <ul>
       {filteredContacts.map(({ id, name, number }) => (
         <List key={id}>
           <Paragraph>{name}:&nbsp; </Paragraph>
           <ParaghNumber> {number} &nbsp;</ParaghNumber>
+
+          {loading === id && <Loader />}
+
           <ButtonSbm
-            onClick={() => dispatch(deleteContactsThunk(id))}
+            onClick={() => handleDelete(id)}
             type="button"
+            disabled={loading === id}
           >
             Delete
           </ButtonSbm>

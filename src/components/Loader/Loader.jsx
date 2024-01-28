@@ -9,7 +9,7 @@ export const Loader = () => {
         size={50}
         thickness={175}
         speed={100}
-        color="rgba(255, 255, 255, 1)"
+        color="#4dc92b"
         secondaryColor="rgba(0, 0, 0, 0.44)"
       />
     </Wrapper>
