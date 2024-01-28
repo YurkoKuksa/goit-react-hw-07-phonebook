@@ -2,8 +2,8 @@ import { nanoid } from 'nanoid';
 import React, { useState } from 'react';
 import { ButtonSbm, FormContainer, InputStyle, LabelCont } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from 'store/contactsSlice';
 import { selectContacts } from 'store/selectors';
+import { addContactsThunk } from 'store/operations';
 
 export const Form = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export const Form = () => {
     );
 
     if (!isNameExists) {
-      dispatch(addContacts(newObject));
+      dispatch(addContactsThunk(newObject));
       setName('');
       setNumber('');
     } else {
