@@ -16,17 +16,17 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
 
-  reducers: {
-    // Define reducers
-    addContacts: (state, action) => {
-      state.contacts = [...state.contacts, action.payload];
-    },
-    removeContacts: (state, action) => {
-      state.contacts = state.contacts.filter(
-        element => element.id !== action.payload
-      );
-    },
-  },
+  // reducers: {
+  //   // Define reducers
+  //   addContacts: (state, action) => {
+  //     state.contacts = [...state.contacts, action.payload];
+  //   },
+  //   removeContacts: (state, action) => {
+  //     state.contacts = state.contacts.filter(
+  //       element => element.id !== action.payload
+  //     );
+  //   },
+  // },
 
   extraReducers: builder => {
     builder
